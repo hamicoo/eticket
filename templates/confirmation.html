@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+        <title>confirm your information</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+         <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='mystyle.css') }}">
+   
+
+</head>
+
+<body>
+ <div class="container">
+    <h2>User Confirmation</h2>
+    <p>Please Read Your Information Below and if it Correct, Conform it</p>
+   
+    <table style="width:100%">
+
+
+
+<ul>
+   
+
+ 
+</ul>
+
+
+
+        <tr>
+            <th class="head">FirstName</th>
+            <td>{{ dataa.name }}</td>
+        </tr>
+        <tr>
+            <th class="head"> LastName</th>
+            <td>{{ dataa.family }}</td>
+        </tr>
+        <tr>
+            <th class="head">BirthDay</th>
+            <td>{{ dataa.birthdate }}</td>
+        </tr>
+        <tr>
+            <th class="head">UserName</th>
+            <td>{{ dataa.username }}</td>
+        </tr>
+        <tr>
+            <th class="head">Email</th>
+            <td>{{ dataa.email }}</td>
+        </tr>
+    </table>
+    <br>
+      <div class="submit">
+          <button type="submit" class="btn btn-success">Agree</button>
+
+            <button type="submit" class="btn btn-warning" onclick="window.location.href='/theform'">Correct
+                Information</button>
+        </div>
+
+</div>
+
+</body>
+
+</html>

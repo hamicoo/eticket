@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Mon Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+
+     <script src="{{ url_for('static', filename='js/my.js') }}"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container">
+
+
+
+<form method="POST" action="/process"  >
+  <div class="form-group">
+    <br>
+    <br>
+    <label for="name">Email address :</label>
+    <input type="email"  class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Enter your name" required>
+  </div>
+
+   <div class="form-group">
+    <label for="family">Family :</label>
+    <input type="text" class="form-control" id="family" name="family" placeholder="please enter your family">
+  </div>
+
+  <div class="form-group">
+    <label for="nationalid">NationalId</label>
+    <input type="text" class="form-control" id="nationalid" name="nationalid" placeholder="please enter your National id">
+  </div>
+
+    <div class="form-group">
+    <label for="birthdate">birthdate</label>
+    <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="please enter your BirthDate">
+  </div>
+
+    <div class="form-group">
+       <input type="radio" class="with-gap"  name="sex" id="male" value="male">
+       <label for="male">Male</label>
+
+       <input type="radio" name="sex"  class="with-gap" id="female" value="female">
+       <label for="female" class="m-l-20">Female</label>
+    </div>
+
+
+  <div class="form-group">
+    <label for="mobile">mobile number</label>
+    <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="please enter your mobile" pattern="^09[0-9]{9}"
+       required>
+  </div>
+
+
+
+    <div class="form-group">
+    <label for="password">password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Minimum eight characters, at least one letter and one number" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+  </div>
+
+
+
+
+
+
+  <button type="submit" class="btn btn-primary" data-dismiss="alert" name="button">Submit</button>
+</form>
+</div>
+
+
+
+
+
+</body>
+</html>
