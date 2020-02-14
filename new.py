@@ -14,5 +14,5 @@ def hash_password_check(password,hashed_password):
     return bcrypt.checkpw(password.encode('utf8'),hashed_password)
 
 
-print(hash_password('salam'))
+print(hash_password('123'))
 print(bcrypt.gensalt())

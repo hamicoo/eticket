@@ -5,7 +5,7 @@ $(document).ready(function() {
 
     $(function() {
         $('#proglang').bind('focusout',function(){
-            $.getJSON('/background_process',{
+            $.getJSON('/check_email_jquery',{
             proglang: $('input[name="proglang"]').val()
             }, function(data) {
             $("#result").text(data.result);

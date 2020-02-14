@@ -1,29 +1,20 @@
-import sqlite3
 import logging
-from flask import jsonify
-
-
-def dict_factory(cursor, row):
-    d = {}
-    for idx, col in enumerate(cursor.description):
-        d[col[0]] = row[idx]
-    return d
-
+import psycopg2
+import psycopg2.extras
+import bcrypt
 
 
 
 def checkemailvalidity(emailaddress):
     try:
-        con = sqlite3.connect("database.db")
-        con.row_factory = dict_factory
+        conn = psycopg2.connect(host="localhost", port=5432, database="eticket", user="postgres", password="123")
+        cur = conn.cursor(cursor_factory = psycopg2.extras.NamedTupleCursor)
     except Exception as e:
         logging.exception(e)
     try:
-        cur = con.cursor()
-        query="select 1 from main.user_table where email='%s'"%(emailaddress)
-        print(query)
-        cur.execute(query)
-        if cur.fetchone()!=None:
+        cur.execute("""select 1 from eticket.users.userinfo where email=%s""", (emailaddress,))
+        res = cur.fetchone()
+        if res!=None:
             return False
         else:
             return True
@@ -32,4 +23,29 @@ def checkemailvalidity(emailaddress):
         logging.exception(e)
 
 
+def userLogin(username,password):
 
+    try:
+        conn = psycopg2.connect(host="localhost", port=5432, database="eticket", user="postgres", password="123")
+        cur = conn.cursor(cursor_factory = psycopg2.extras.NamedTupleCursor)
+    except Exception as e:
+        logging.exception(e)
+    try:
+        cur.execute("""select 1 from eticket.users.userlogin where username=%s""", (username,))
+        res = cur.fetchone()
+        if res!=None:
+            cur.execute("""select encode(password, 'escape') as password, user_id from eticket.users.userlogin where username = %s """, (username,))
+            res=cur.fetchone()
+            print(res)
+            if bcrypt.checkpw(password.encode('utf8'),str.encode(res.password)):
+                cur.close()
+                return 'success'
+            else:
+                cur.close()
+                return 'faild'
+        else:
+            cur.close()
+            return 'faild'
+        cur.close()
+    except Exception as e:
+        logging.exception(e)

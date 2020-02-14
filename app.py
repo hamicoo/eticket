@@ -87,28 +87,22 @@ def process():
 
 @app.route("/checklogin", methods=['POST'])
 def checklogin():
-	print(request.form)
-	connect_db()
-	db = get_db()
-	query=("select id, user_id, username, password, locksts, lastlogin, temppass, forgetsts " 
-	 		"from user_login "
-	 		 "where username='{0}' ".format(request.form['email']))
+	username=request.form['email']
+	password=request.form['password']
+	result=localprocess.userLogin(username,password)
 
-	cur = db.execute(query)
-	results = cur.fetchone()
-	print(results['username'])
-
-	return jsonify({'email':request.form['email'],'password':request.form['password']})
+	return jsonify({'result':result})
 
 
 
-@app.route('/background_process', methods=['GET', 'POST'])
-def background_process():
+@app.route('/check_email_jquery', methods=['GET', 'POST'])
+def check_email_jquery():
 
 		email=request.args.get('proglang')
 		if not re.match(r"^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$", email):
 			return jsonify(result='please enter correct email address')
 		else:
+			print(localprocess.checkemailvalidity(email))
 
 			if localprocess.checkemailvalidity(email):
 				return jsonify(result='you can register with this email address')
