@@ -1,29 +1,33 @@
 from flask import Flask, jsonify, request, url_for, redirect, session, render_template, g
+
 import sqlite3
+import logging
 import bcrypt
+import localprocess
+import re
 
 app = Flask(__name__)
-
 app.config['DEBUG'] = True
 app.config['SECRET_KEY'] = 'Thisisasecret!'
 
 
 def connect_db():
 	sql = sqlite3.connect('database.db')
-
-	def dict_factory(cursor, row):
-		d = {}
-		for idx, col in enumerate(cursor.description):
-			d[col[0]] = row[idx]
-		return d
-	sql.row_factory = dict_factory
+	sql.row_factory = sqlite3.Row
 	return sql
 
 
 def get_db():
-	if not hasattr(g, 'sqlite3'):
+	if not hasattr(g, 'sqlite_db'):
 		g.sqlite_db = connect_db()
 	return g.sqlite_db
+
+
+def dict_factory(cursor, row):
+	d = {}
+	for idx, col in enumerate(cursor.description):
+		d[col[0]] = row[idx]
+	return d
 
 
 @app.teardown_appcontext
@@ -52,6 +56,7 @@ def process():
 	myobh = {}
 	name = request.form['name']
 	family = request.form['family']
+	email=request.form['email']
 	nationalid = request.form['nationalid']
 	birthdate = request.form['birthdate']
 	sex = request.form['sex']
@@ -62,17 +67,25 @@ def process():
 			'result': 'Success!', 'resultCode': 1,
 			 'name': name,
 			 'family': family,
+			'email':email,
 			'nationalid':nationalid,
 			 'birthdate': birthdate,
 			 'sex':sex,
 			 'mobile':mobile,
 			 'password':password
 			 }
+	if checkemailvalidity(emailaddress=email):
+		return render_template('confirmation.html', dataa=myobh)
+	else:
+		return jsonify({'error': 'Admin access is required'}), 401
 
-	return render_template('confirmation.html', dataa=myobh)
 
 
-@app.route('/checklogin', methods=['POST'])
+
+
+
+
+@app.route("/checklogin", methods=['POST'])
 def checklogin():
 	print(request.form)
 	connect_db()
@@ -86,30 +99,54 @@ def checklogin():
 	print(results['username'])
 
 	return jsonify({'email':request.form['email'],'password':request.form['password']})
-	#if request.method == 'POST':
-	#	print('post')
-	#	new = request.form.get('email', 'default')
-	# body=request.form['password']
-	#	print(new)
 
 
-# mail = request.form['email']
-# password = request.form['password']
-# print(mail,password)
-#
 
-#
+@app.route('/background_process', methods=['GET', 'POST'])
+def background_process():
+
+		email=request.args.get('proglang')
+		if not re.match(r"^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$", email):
+			return jsonify(result='please enter correct email address')
+		else:
+
+			if localprocess.checkemailvalidity(email):
+				return jsonify(result='you can register with this email address')
+			else:
+				return jsonify(result='it seem this email alredy in use please follow th link ')
 
 
-# return '<h1>The ID is {}. The name is {}. The location is {}.</h1>'.format(results[0]['id'], results[0]['name'],
-#																		   results[0]['location'])
 
 
-# print(mail,password)
-#   return jsonify({'name':1})
 
 
-# return render_template('confirmation.html', dataa=myobh)
+
+@app.route('/interactive', methods=['GET', 'POST'])
+def interactive():
+	print('injaaaaaaaaaaaaaaaaaaaaaaaaa')
+	try:
+		return render_template('interactive.html')
+	except Exception as e:
+		return (str(e))
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route("/checkemailvalidity", methods=["GET,POST"])
+def checkemailvalidity(emailaddress):
+	return (localprocess.checkemailvalidity(emailaddress))
+
+
+
+
 
 
 if __name__ == '__main__':

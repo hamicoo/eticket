@@ -5,10 +5,10 @@
     <title>E-Mon Login</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
 
-     <script src="{{ url_for('static', filename='js/my.js') }}"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+    <script src="{{ url_for('static', filename='js/my.js') }}" type="text/javascript"> </script>
 
 
 
@@ -24,20 +24,43 @@
 
 
 <form method="POST" action="/process"  >
-  <div class="form-group">
-    <br>
-    <br>
-    <label for="name">Email address :</label>
-    <input type="email"  class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Enter your name" required>
+
+<div class="alert alert-info" id="result">
+
   </div>
 
-   <div class="form-group">
+<br>
+
+  <div class="row">
+    <br>
+    <br>
+    <div class="col-xl-5">
+    <label for="name">Name :</label>
+    <input type="text"  class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Enter your name" required>
+
+</div>
+
+<div class="col-xl-5">
     <label for="family">Family :</label>
     <input type="text" class="form-control" id="family" name="family" placeholder="please enter your family">
   </div>
+  </div>
+
+
+
+<label for="proglang">Username :</label>
+<div class="input-group">
+
+  <input type="text" name="proglang" id="proglang" class="form-control" placeholder="please enter username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+
+
+  </div>
+</div>
+
 
   <div class="form-group">
-    <label for="nationalid">NationalId</label>
+    <label for="nationalid">National Id:</label>
     <input type="text" class="form-control" id="nationalid" name="nationalid" placeholder="please enter your National id">
   </div>
 
