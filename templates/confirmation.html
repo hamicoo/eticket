@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
          <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
-        <link rel="stylesheet" href="{{ url_for('static', filename='mystyle.css') }}">
+
    
 
 </head>
@@ -32,11 +32,11 @@
 
 
         <tr>
-            <th class="head">FirstName</th>
+            <th class="head">FirstName :</th>
             <td>{{ dataa.name }}</td>
         </tr>
         <tr>
-            <th class="head"> LastName</th>
+            <th class="head"> LastName :</th>
             <td>{{ dataa.family }}</td>
         </tr>
         <tr>
@@ -48,9 +48,43 @@
             <td>{{ dataa.username }}</td>
         </tr>
         <tr>
-            <th class="head">Email</th>
+            <th class="head">Email :</th>
             <td>{{ dataa.email }}</td>
         </tr>
+         <tr>
+            <th class="head">National ID or Residence ID :</th>
+            <td>{{ dataa.nationalid }}</td>
+        </tr>
+
+              <tr>
+            <th class="head">BirthDate :</th>
+            <td>{{ dataa.birthdate }}</td>
+        </tr>
+
+
+
+                         <tr>
+            <th class="head">Sex :</th>
+            <td>{{ dataa.sex }}</td>
+        </tr>
+
+                            <tr>
+            <th class="head">Mobile Number :</th>
+            <td>{{ dataa.mobile }}</td>
+        </tr>
+
+
+                                    <tr>
+            <th class="head">Tag ID :</th>
+            <td>{{ dataa.tagid }}</td>
+        </tr>
+
+
+                                         <tr>
+            <th class="head">Pin ID:</th>
+            <td>{{ dataa.pinid }}</td>
+        </tr>
+
     </table>
     <br>
       <div class="submit">

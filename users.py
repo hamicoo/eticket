@@ -1,0 +1,73 @@
+import logging
+import psycopg2
+import psycopg2.extras
+import bcrypt
+import json
+
+
+
+
+def checkemailvalidity(emailaddress):
+    try:
+        conn = psycopg2.connect(host="localhost", port=5432, database="eticket", user="postgres", password="123")
+        cur = conn.cursor(cursor_factory = psycopg2.extras.NamedTupleCursor)
+    except Exception as e:
+        logging.exception(e)
+    try:
+        cur.execute("""select 1 from eticket.users.userinfo where email=%s""", (emailaddress,))
+        res = cur.fetchone()
+        if res!=None:
+            return False
+        else:
+            return True
+        cur.close()
+    except Exception as e:
+        logging.exception(e)
+
+
+def userLogin(username, password):
+    try:
+        conn = psycopg2.connect(host="localhost", port=5432, database="eticket", user="postgres", password="123")
+        cur = conn.cursor(cursor_factory=psycopg2.extras.NamedTupleCursor)
+
+    except Exception as e:
+        logging.exception(e)
+    try:
+        cur.execute("""select 1 from eticket.users.userlogin where username=%s""", (username,))
+        res = cur.fetchone()
+        if res != None:
+
+            cur.execute("""select encode(password, 'escape') as password, user_id,name,family,birthdate,sex,mobile,email,address,registerdate,lo.lastlogin  from eticket.users.userlogin lo
+                                join eticket.users.userinfo inf on lo.user_id=inf.id
+                                     where username = %s """, (username,))
+            userinfo = cur.fetchone()
+            logging.info(userinfo)
+            if bcrypt.checkpw(password.encode('utf8'), str.encode(userinfo.password)):
+                cur.close()
+                updateLoginTime(userinfo.user_id)
+
+                return ('success', userinfo)
+            else:
+                cur.close()
+                return ('faild', None)
+        else:
+            cur.close()
+            return ('faild', None)
+        cur.close()
+    except Exception as e:
+        logging.exception(e)
+
+
+def updateLoginTime(userId):
+    try:
+        conn = psycopg2.connect(host="localhost", port=5432, database="eticket", user="postgres", password="123")
+        cur = conn.cursor(cursor_factory=psycopg2.extras.NamedTupleCursor)
+    except Exception as e:
+        logging.exception(e)
+    cur.execute("""update eticket.users.userlogin set lastlogin=now()::timestamp(0) where user_id= %s """, (userId,))
+    conn.commit()
+    cur.close()
+    return True
+
+
+

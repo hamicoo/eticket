@@ -48,7 +48,8 @@
 
 
 
-<label for="proglang">Username :</label>
+
+<label for="proglang">Email :</label>
 <div class="input-group">
 
   <input type="text" name="proglang" id="proglang" class="form-control" placeholder="please enter username" aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -70,7 +71,7 @@
   </div>
 
     <div class="form-group">
-       <input type="radio" class="with-gap"  name="sex" id="male" value="male">
+       <input type="radio" class="with-gap"  name="sex" id="male" value="male" checked="checked">
        <label for="male">Male</label>
 
        <input type="radio" name="sex"  class="with-gap" id="female" value="female">
@@ -88,15 +89,34 @@
 
     <div class="form-group">
     <label for="password">password</label>
-    <input type="password" class="form-control" id="password" name="password" placeholder="Minimum eight characters, at least one letter and one number" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+    <input type="password" class="form-control" id="password" name="password" placeholder="Minimum eight characters, at least one letter and one number">
+  </div>
+
+    <hr size="40">
+
+<div class="row">
+    <br>
+    <br>
+    <div class="col-xl-5">
+    <label for="tagid">Tag Id :</label>
+    <input type="number"  class="form-control" id="tagid" name="tagid" aria-describedby="emailHelp" placeholder="Please Enetr Tag Id (wrote Behind Your Card)" required>
+
+</div>
+
+<div class="col-xl-5">
+    <label for="pinid">Pin Id :</label>
+    <input type="number" class="form-control" id="pinid" name="pinid" placeholder="please enter Tag Id " required>
+  </div>
   </div>
 
 
 
+<br>
 
 
 
-  <button type="submit" class="btn btn-primary" data-dismiss="alert" name="button">Submit</button>
+
+  <button id="mybutt" type="submit" class="btn btn-primary" data-dismiss="alert" name="button" required>Submit</button>
 </form>
 </div>
 

@@ -1,18 +1,11 @@
-import bcrypt
+import localprocess
 
 
 
 
 
 
-def hash_password(password):
-    hashed_password = bcrypt.hashpw(password.encode('utf8'), bcrypt.gensalt())
-    return hashed_password
+tagid=101010
+pinid=202020
 
-
-def hash_password_check(password,hashed_password):
-    return bcrypt.checkpw(password.encode('utf8'),hashed_password)
-
-
-print(hash_password('123'))
-print(bcrypt.gensalt())
+print(localprocess.checkcardvalidity(tagid,pinid))

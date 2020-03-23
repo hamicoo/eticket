@@ -1,8 +1,7 @@
 $(document).ready(function() {
     $("#result").hide();
+     
 });
-
-
     $(function() {
         $('#proglang').bind('focusout',function(){
             $.getJSON('/check_email_jquery',{
@@ -31,3 +30,31 @@ $(document).ready(function() {
             return false;
             });
             });
+
+
+    $(function() {
+        $('#pinid').bind('focusout',function(){
+            $.getJSON('/check_tagid',{
+            pinid: $('input[name="pinid"]').val(),
+            tagid: $('input[name="tagid"]').val()
+
+            }, function(data) {
+
+            $("#result").text(data.result);
+
+            if (data.result === 'Your card information is incorrect !') {
+                $("#result").show();
+                $("#result").removeClass('alert alert-success').addClass('alert alert-danger');
+            }
+            if (data.result === 'Your card information is correct now') {
+                $("#result").show();
+                $("#result").removeClass('alert alert-danger').addclass('alert alert-success');
+            }
+
+            });
+            return false;
+            });
+            });
+
+
+
