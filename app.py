@@ -14,22 +14,9 @@ app.config['DEBUG'] = True
 app.config['SECRET_KEY'] = 'Thisisasecret!'
 logging.basicConfig(format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 
+myobh = {}
 
 
-
-
-
-def dict_factory(cursor, row):
-	d = {}
-	for idx, col in enumerate(cursor.description):
-		d[col[0]] = row[idx]
-	return d
-
-
-@app.teardown_appcontext
-def close_db(error):
-	if hasattr(g, 'sqlite_db'):
-		g.sqlite_db.close()
 
 
 @app.errorhandler(404)
@@ -63,7 +50,7 @@ def mainpage():
 
 @app.route('/process', methods=['POST', 'GET'])
 def process():
-	myobh = {}
+	global myobh
 	name = request.form['name']
 	family = request.form['family']
 	email=request.form['proglang']
@@ -72,9 +59,9 @@ def process():
 	sex = request.form['sex']
 	mobile = request.form['mobile']
 	password = request.form['password']
+	address = request.form['address']
 	pinid=request.form['pinid']
 	tagid=request.form['tagid']
-
 	myobh = {
 			'result': 'Success!',
 			'resultCode': 1,
@@ -86,10 +73,10 @@ def process():
 			 'sex':sex,
 			 'mobile':mobile,
 			 'password':password,
+			 'address' : address,
 			'tagid': tagid,
 			'pinid' : pinid
 			 }
-
 	if cards.checkcardvalidity(tagid,pinid) is  False:
 		return jsonify({'error': 'Your Pin or Tag Id Is Incorrect'}), 401
 
@@ -97,10 +84,6 @@ def process():
 		return jsonify({'error': 'Your Email Addresss is incorrect'}), 401
 
 	return render_template('confirmation.html', dataa=myobh)
-
-
-
-
 
 
 
@@ -117,6 +100,12 @@ def checklogin():
 	return jsonify({'result':'login Failed'})
 
 
+
+@app.route("/registeruser", methods=['POST'])
+def registeruser():
+	global myobh
+	res=users.registerNewUser(userinfo=myobh)
+	return jsonify(result=res)
 
 
 
@@ -171,4 +160,5 @@ def check_tagid():
 
 
 if __name__ == '__main__':
+
 	app.run()

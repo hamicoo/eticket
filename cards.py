@@ -18,14 +18,13 @@ def checkcardvalidity(tagid,pinid):
     cur.execute("""select status from eticket.cards.all_cards where id=%s and pin=%s""", (tagid,pinid))
     res = cur.fetchone()
 
-
-
-
-
     if  res is None  :
         return False
     elif res.status ==1:
         return False
     return True
+
+
+
 
 

@@ -58,6 +58,8 @@ def userLogin(username, password):
         logging.exception(e)
 
 
+
+
 def updateLoginTime(userId):
     try:
         conn = psycopg2.connect(host="localhost", port=5432, database="eticket", user="postgres", password="123")
@@ -68,6 +70,63 @@ def updateLoginTime(userId):
     conn.commit()
     cur.close()
     return True
+
+
+
+
+
+def registerNewUser(userinfo):
+    print('userinfo function')
+
+
+    try:
+        conn = psycopg2.connect(host="localhost", port=5432, database="eticket", user="postgres", password="123")
+        cur = conn.cursor(cursor_factory=psycopg2.extras.NamedTupleCursor)
+    except Exception as e:
+        logging.exception(e)
+
+
+
+
+    try:
+        cur.execute(
+            """ INSERT INTO "users"."userinfo" ("id", "name", "family", "birthdate", "sex", "mobile", "email", "address", "registerdate") 
+                VALUES (DEFAULT, %s, %s, %s, %s, %s, %s, %s, DEFAULT) returning id """,
+            (userinfo['name'], userinfo['family'], userinfo['birthdate'],userinfo['sex'],userinfo['mobile'],userinfo['email'],userinfo['address']))
+        inserted_user_id=cur.fetchone()
+        try:
+            salt = bcrypt.gensalt()
+            encryptedPassword = bcrypt.hashpw(userinfo['password'].encode('utf8'), salt)
+            cur.execute(
+                """ INSERT INTO "users"."userlogin" ("id", "user_id", "username", "password")
+                 VALUES (DEFAULT, %s, %s, %s ) """,
+                (inserted_user_id, userinfo['email'], encryptedPassword))
+            try:
+                salt = bcrypt.gensalt()
+                encryptedPassword = bcrypt.hashpw(userinfo['password'].encode('utf8'), salt)
+                cur.execute(
+                    """ update cards.all_cards set owner_user_id=%s , status=1 , update_date=now() where id=%s and pin=%s  """,
+                    (inserted_user_id,userinfo['tagid'] ,userinfo['pinid'] ))
+            except Exception as e:
+                logging.exception(e)
+        except Exception as e:
+            logging.exception(e)
+    except Exception as e:
+        logging.exception(e)
+
+
+    try:
+        conn.commit()
+        cur.close()
+        return 'inserted success !'
+
+    except Exception as e:
+        logging.exception(e)
+
+
+
+
+
 
 
 
