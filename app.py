@@ -5,24 +5,24 @@ import logging
 import bcrypt
 import gates,users,cards
 import re
-
+import os
 
 
 
 app = Flask(__name__)
-app.config['DEBUG'] = True
-app.config['SECRET_KEY'] = 'Thisisasecret!'
+app.secret_key = os.urandom(24)
+
 logging.basicConfig(format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
+
 
 myobh = {}
 
 
-
+#PAGES
 
 @app.errorhandler(404)
 def page_not_found(error):
 	return render_template('404.html', title='404'), 404
-
 
 @app.route('/login')
 def login():
@@ -33,22 +33,28 @@ def login():
 def userprofile():
 	return render_template('userprofile.html')
 
-
 @app.route('/theform', methods=['GET'])
 def theform():
-
 	return render_template('form.html')
 
 
-@app.route('/mainpage', methods=['GET'])
-def mainpage():
-	print(session)
-	if 'userid' in session:
-		return 'Logged in as %s' % escape(session['userid'])
-	return 'You are not logged in'
+@app.route('/dashboard')
+def dashboard():
 
+	return render_template('examples/dashboard.html')
 
-@app.route('/process', methods=['POST', 'GET'])
+@app.route('/user')
+def user():
+	global myobh
+	print(myobh)
+	if len(myobh)<2:
+
+		return render_template('login.html')
+	return render_template('examples/user.html')
+
+#USER PROCESS SECTION
+
+@app.route('/processNewRegisterUser', methods=['POST', 'GET'])
 def process():
 	global myobh
 	name = request.form['name']
@@ -83,30 +89,12 @@ def process():
 	if users.checkemailvalidity(emailaddress=email) is False:
 		return jsonify({'error': 'Your Email Addresss is incorrect'}), 401
 
-	return render_template('confirmation.html', dataa=myobh)
+	return render_template('confirmation.html',dataa=myobh)
 
 
-
-
-@app.route("/checklogin", methods=['POST'])
-def checklogin():
-	username=request.form['email']
-	password=request.form['password']
-	result=users.userLogin(username,password)
-	if result[0]=='success':
-		logging.warning(result[1].name + ' logged in ')
-
-		return render_template('userprofile.html', dataa=result[1])
-	return jsonify({'result':'login Failed'})
-
-
-
-@app.route("/registeruser", methods=['POST'])
-def registeruser():
-	global myobh
-	res=users.registerNewUser(userinfo=myobh)
-	return jsonify(result=res)
-
+@app.route("/checkemailvalidity", methods=["GET,POST"])
+def checkemailvalidity(emailaddress):
+	return (users.checkemailvalidity(emailaddress))
 
 
 @app.route('/check_email_jquery', methods=['GET', 'POST'])
@@ -126,24 +114,43 @@ def check_email_jquery():
 				return jsonify(result='it seem this email alredy in use please follow th link ')
 
 
+@app.route("/checklogin", methods=['POST'])
+def checklogin():
+	global myobh
+	username=request.form['email']
+	password=request.form['password']
+	result=users.userLogin(username,password)
+	if result[0]=='success':
+		logging.warning(result[1].name + ' logged in ')
+		myobh=result[1]
+		session['user_id'] = result[1].user_id
+		session['name'] = result[1].name
+		session['family'] = result[1].family
+		session['birthdate'] = str(result[1].birthdate)
+		session['registerdate'] = str(result[1].registerdate)
+		session['sex'] = result[1].sex
+		session['email'] = result[1].email
+		session['mobile'] = result[1].mobile
+		session['address'] = result[1].address
+		session['lastlogin'] = str(result[1].lastlogin)
+		session['tagid'] = result[1].tagid
+		session['pinid'] = result[1].pinid
+
+
+		return render_template('examples/dashboard.html')
+
+	return jsonify({'result':'login Failed'})
+
+
+@app.route("/registeruser", methods=['POST'])
+def registeruser():
+	global myobh
+	res=users.registerNewUser(userinfo=myobh)
+	return jsonify(result=res)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-@app.route("/checkemailvalidity", methods=["GET,POST"])
-def checkemailvalidity(emailaddress):
-	return (users.checkemailvalidity(emailaddress))
-
+#CARDS
 
 
 
@@ -152,13 +159,23 @@ def check_tagid():
 	pinid=request.args.get('pinid')
 	tagid=request.args.get('tagid')
 	res=cards.checkcardvalidity(tagid,pinid)
-
 	return jsonify(result=str(res))
 
 
+#GATES
 
+
+#TEST
+
+@app.route('/mainpage', methods=['GET'])
+def mainpage():
+	print(session)
+	if 'userid' in session:
+		return 'Logged in as %s' % escape(session['userid'])
+	return 'You are not logged in'
 
 
 if __name__ == '__main__':
 
-	app.run()
+	app.run(debug=True)
+

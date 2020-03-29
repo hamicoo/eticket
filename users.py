@@ -37,9 +37,12 @@ def userLogin(username, password):
         res = cur.fetchone()
         if res != None:
 
-            cur.execute("""select encode(password, 'escape') as password, user_id,name,family,birthdate,sex,mobile,email,address,registerdate,lo.lastlogin  from eticket.users.userlogin lo
-                                join eticket.users.userinfo inf on lo.user_id=inf.id
-                                     where username = %s """, (username,))
+            cur.execute("""select encode(password, 'escape') as password, user_id,name,family,birthdate,sex,mobile,email,
+                            address,registerdate,lo.lastlogin,ca.id as tagid,ca.pin as pinid
+                                from eticket.users.userlogin lo
+                                    join eticket.users.userinfo inf on lo.user_id=inf.id
+                                join eticket.cards.all_cards ca on lo.user_id=ca.owner_user_id
+                            where username = %s """, (username,))
             userinfo = cur.fetchone()
             logging.info(userinfo)
             if bcrypt.checkpw(password.encode('utf8'), str.encode(userinfo.password)):
