@@ -6,6 +6,8 @@ import bcrypt
 import gates,users,cards
 import re
 import os
+import kavenegar
+
 
 
 
@@ -28,6 +30,9 @@ def page_not_found(error):
 def login():
 	return render_template('login.html')
 
+@app.route('/register')
+def register():
+	return render_template('register.html')
 
 @app.route('/userprofile')
 def userprofile():
@@ -38,6 +43,7 @@ def theform():
 	return render_template('form.html')
 
 
+
 @app.route('/dashboard')
 def dashboard():
 
@@ -46,7 +52,7 @@ def dashboard():
 @app.route('/user')
 def user():
 	global myobh
-	print(myobh)
+
 	if len(myobh)<2:
 
 		return render_template('login.html')
@@ -57,6 +63,7 @@ def user():
 @app.route('/processNewRegisterUser', methods=['POST', 'GET'])
 def process():
 	global myobh
+
 	name = request.form['name']
 	family = request.form['family']
 	email=request.form['proglang']
@@ -66,6 +73,7 @@ def process():
 	mobile = request.form['mobile']
 	password = request.form['password']
 	address = request.form['address']
+	city = request.form['city']
 	pinid=request.form['pinid']
 	tagid=request.form['tagid']
 	myobh = {
@@ -80,6 +88,7 @@ def process():
 			 'mobile':mobile,
 			 'password':password,
 			 'address' : address,
+			'city': city,
 			'tagid': tagid,
 			'pinid' : pinid
 			 }
@@ -106,8 +115,6 @@ def check_email_jquery():
 		if not re.match(r"^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$", email):
 			return jsonify(result='please enter correct email address')
 		else:
-			print(users.checkemailvalidity(email))
-
 			if users.checkemailvalidity(email):
 				return jsonify(result='you can register with this email address')
 			else:
@@ -145,8 +152,11 @@ def checklogin():
 @app.route("/registeruser", methods=['POST'])
 def registeruser():
 	global myobh
-	res=users.registerNewUser(userinfo=myobh)
-	return jsonify(result=res)
+	if users.registerNewUser(userinfo=myobh):
+		return render_template('login.html')
+	else:
+		return render_template('404.html', title='404'), 404
+
 
 
 
@@ -169,7 +179,7 @@ def check_tagid():
 
 @app.route('/mainpage', methods=['GET'])
 def mainpage():
-	print(session)
+
 	if 'userid' in session:
 		return 'Logged in as %s' % escape(session['userid'])
 	return 'You are not logged in'
