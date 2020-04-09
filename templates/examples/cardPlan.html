@@ -18,6 +18,7 @@ The above copyright notice and this permission notice shall be included in all c
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='./assets/img/favicon.png') }} ">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
+    static/assets/img/apple-icon.png
     Material Dashboard by Creative Tim
   </title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
@@ -26,13 +27,15 @@ The above copyright notice and this permission notice shall be included in all c
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="{{ url_for('static', filename='./assets/css/material-dashboard.css') }}" rel="stylesheet" />
+
+
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{ url_for('static', filename='./assets/cdemo/demo.css') }} " rel="stylesheet" />
 </head>
 
-<body class="content">
+<body class="">
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="{{ url_for('static', filename='./assets/img/sidebar-1.jpg') }} ">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image=" ../assets/img/sidebar-1.jpg">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -43,19 +46,19 @@ The above copyright notice and this permission notice shall be included in all c
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item ">
+          <li class="nav-item  ">
             <a class="nav-link" href="/dashboard">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item active ">
-            <a class="nav-link" href="./user.html">
+          <li class="nav-item ">
+            <a class="nav-link" href="/user">
               <i class="material-icons">person</i>
               <p>User Profile</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item active ">
             <a class="nav-link" href="/cardPlan">
               <i class="material-icons">content_paste</i>
               <p>Card Plan</p>
@@ -92,10 +95,10 @@ The above copyright notice and this permission notice shall be included in all c
             </a>
           </li>
           <li class="nav-item active-pro ">
-            <a class="nav-link" href="/logout" >
+          <a class="nav-link" href="/logout" >
               <i class="material-icons">unarchive</i>
               <p>Logout</p>
-            </a>
+          </a>
           </li>
         </ul>
       </div>
@@ -105,7 +108,7 @@ The above copyright notice and this permission notice shall be included in all c
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">User Profile</a>
+            <a class="navbar-brand" href="javascript:;">Table List</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -173,129 +176,230 @@ The above copyright notice and this permission notice shall be included in all c
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Edit Profile</h4>
-                  <p class="card-category">Complete your profile</p>
+                  <h4 class="card-title ">Please Choise Your Card Plane </h4>
+
                 </div>
                 <div class="card-body">
-                  <form>
-                    <div class="row">
-                      <div class="col-md-5">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Your Card TagID</label>
-                          <input type="text" class="form-control" value="{{ session.get('tagid', 'not set') }}" disabled>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="form-group">
-                          <label class="bmd-label-floating" >First name</label>
-                          <input type="text" class="form-control" value="{{ session.get('name', 'not set') }}" disabled>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating" >Last Name</label>
-                          <input type="email" class="form-control" value="{{ session.get('family', 'not set') }}" disabled>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Date Of Joining</label>
-                          <input type="date" class="form-control" value="{{ session.get('registerdate', 'not set') }}" disabled>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Mobile No</label>
-                          <input type="text" class="form-control" value="{{ session.get('mobile', 'not set') }}" disabled>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Adress</label>
-                          <input type="text" class="form-control" value="{{ session.get('address', 'not set') }}" disabled>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Birthdate</label>
-                          <input type="date" class="form-control" value="{{ session.get('birthdate', 'not set') }}" disabled>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Email</label>
-                          <input type="text" class="form-control" value="{{ session.get('email', 'not set') }}" disabled>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Last Login</label>
-                          <input type="text" class="form-control" value="{{ session.get('lastlogin', 'not set') }}" disabled>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label>About Me</label>
-                          <div class="form-group">
-                            <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                            <textarea class="form-control" rows="5"></textarea>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
-                    <div class="clearfix"></div>
-                  </form>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                      <form method="POST" action="/updatecardplan" >
+
+
+
+<br>
+
+      ℹ️ The items of the list are depend on your Profile <br>
+      ℹ️ if your are a student and don't see students plane in the list , you should upload your Document in upload Menu <br>
+                          <hr>
+                          💳 <b>{{ message }}</b>
+
+                          <br>
+
+          <td>
+          <label>Select Your Card Plan :</label>
+
+
+            {% if  message =="you don't have any active plan on your card please select a plan to activate your card" %}
+
+            <select name="option" >
+              {% for x in server_list %}
+            <option value="{{ x.id }}" SELECTED > {{ x.concat }}</option>
+
+
+            {% endfor %}
+                   <option value="" selected="selected" disabled  > Select </option>
+            </select>
+            <button type="submit" class="btn btn-primary pull-right" onclick="clicked(event)">Update Profile</button>
+              {% else %}
+
+             <select name="option" disabled>
+            </select>
+             <button type="submit" class="btn btn-primary pull-right" onclick="clicked(event)" disabled>Update Profile</button>
+
+
+            {% endif %}
+
+
+
+
+            </td>
+
+
+
+        </form>
+
+
+
+
+
+
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+          <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Card Plan History</h4>
+                  <p class="card-category"> - </p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                          ID
+                        </th>
+                        <th>
+                          Name
+                        </th>
+                        <th>
+                          Country
+                        </th>
+                        <th>
+                          City
+                        </th>
+                        <th>
+                          Salary
+                        </th>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            1
+                          </td>
+                          <td>
+                            Dakota Rice
+                          </td>
+                          <td>
+                            Niger
+                          </td>
+                          <td>
+                            Oud-Turnhout
+                          </td>
+                          <td class="text-primary">
+                            $36,738
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            2
+                          </td>
+                          <td>
+                            Minerva Hooper
+                          </td>
+                          <td>
+                            Curaçao
+                          </td>
+                          <td>
+                            Sinaai-Waas
+                          </td>
+                          <td class="text-primary">
+                            $23,789
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            3
+                          </td>
+                          <td>
+                            Sage Rodriguez
+                          </td>
+                          <td>
+                            Netherlands
+                          </td>
+                          <td>
+                            Baileux
+                          </td>
+                          <td class="text-primary">
+                            $56,142
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            4
+                          </td>
+                          <td>
+                            Philip Chaney
+                          </td>
+                          <td>
+                            Korea, South
+                          </td>
+                          <td>
+                            Overland Park
+                          </td>
+                          <td class="text-primary">
+                            $38,735
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            5
+                          </td>
+                          <td>
+                            Doris Greene
+                          </td>
+                          <td>
+                            Malawi
+                          </td>
+                          <td>
+                            Feldkirchen in Kärnten
+                          </td>
+                          <td class="text-primary">
+                            $63,542
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            6
+                          </td>
+                          <td>
+                            Mason Porter
+                          </td>
+                          <td>
+                            Chile
+                          </td>
+                          <td>
+                            Gloucester
+                          </td>
+                          <td class="text-primary">
+                            $78,615
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
 
-          </div>
-        </div>
-      </div>
-      <footer class="footer">
-        <div class="container-fluid">
-          <nav class="float-left">
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com">
-                  Log Out
-                </a>
-              </li>
-              <li>
-                <a href="https://creative-tim.com/presentation">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="https://www.creative-tim.com/license">
-                  Licenses
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright float-right">
-            &copy;
-            <script>
-              document.write(new Date().getFullYear())
-            </script>, made with <i class="material-icons">favorite</i> by
-            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
-          </div>
-        </div>
-      </footer>
+
+
+
+
+
+
+
+
+
+
+
     </div>
   </div>
   <div class="fixed-plugin">
@@ -366,8 +470,10 @@ The above copyright notice and this permission notice shall be included in all c
       </ul>
     </div>
   </div>
+    </div>
+  </div>
+
   <!--   Core JS Files   -->
-<!--   Core JS Files   -->
   <script src="{{ url_for('static', filename='./assets/js/core/jquery.min.js') }}" > </script>
   <script src="{{ url_for('static', filename='./assets/js/core/popper.min.js') }} "></script>
   <script src="{{ url_for('static', filename='./assets/js/core/bootstrap-material-design.min.js') }}  "></script>
@@ -580,8 +686,23 @@ The above copyright notice and this permission notice shall be included in all c
         });
       });
     });
+    // Material Select Initialization
+    $(document).ready(function() {
+    $('.mdb-select').materialSelect();
+    });
+
 
   </script>
+
+
+<script>
+function clicked(e)
+{
+    if(!confirm('Are you sure?'))e.preventDefault();
+}
+</script>
+
+
 </body>
 
 </html>
