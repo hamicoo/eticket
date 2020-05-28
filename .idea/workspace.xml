@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="653518a1-2d62-4fd6-bbb4-b36a1e073a21" name="Default Changelist" comment="back to start point again !">
+    <list default="true" id="653518a1-2d62-4fd6-bbb4-b36a1e073a21" name="Default Changelist" comment="updated new login page and profile page !">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/tostify/script.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/tostify/toastify.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/tostify/analytics.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/tostify/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/tostify/toastify.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/testcode.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d2f14142-0691-47ee-b418-a254e7f05e34.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d2f14142-0691-47ee-b418-a254e7f05e34.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/eticket system.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/eticket system.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cards.py" beforeDir="false" afterPath="$PROJECT_DIR$/cards.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/confirmation.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/confirmation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/my.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/my.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/examples/cardPlan.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/examples/cardPlan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,6 +47,10 @@
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="database" type="feb32156:DbDataSourceImpl" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
     </expand>
     <select />
   </component>
@@ -65,8 +77,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="postgresql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
@@ -74,15 +88,18 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/templates" />
-      <recent name="$PROJECT_DIR$/static" />
-      <recent name="$PROJECT_DIR$/templates/files" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/templates" />
+      <recent name="$PROJECT_DIR$/templates/examples" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/static" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/js/tostify" />
+      <recent name="$PROJECT_DIR$/static/css/tostify" />
+      <recent name="$PROJECT_DIR$/templates" />
+      <recent name="$PROJECT_DIR$/static/login2" />
+      <recent name="$PROJECT_DIR$/static/login/css" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -149,6 +166,32 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <option name="contentProportion" value="0.19301471" />
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@a6cf337a" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@a6cf337a" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@7d7031c1" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@a6cf337a" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@2eab8d23" type="9fbbdea:ServiceModel$ServiceNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -177,6 +220,31 @@
       <workItem from="1585007699963" duration="205000" />
       <workItem from="1585068075042" duration="1337000" />
       <workItem from="1585118474739" duration="10219000" />
+      <workItem from="1585178973601" duration="121000" />
+      <workItem from="1585298361018" duration="7187000" />
+      <workItem from="1585402025559" duration="10099000" />
+      <workItem from="1585434225206" duration="3873000" />
+      <workItem from="1585475393990" duration="950000" />
+      <workItem from="1585526408770" duration="6000" />
+      <workItem from="1585579811085" duration="9654000" />
+      <workItem from="1585675439829" duration="16028000" />
+      <workItem from="1586010004439" duration="265000" />
+      <workItem from="1586100857240" duration="5408000" />
+      <workItem from="1586287994418" duration="251000" />
+      <workItem from="1586346893656" duration="12786000" />
+      <workItem from="1586373329004" duration="130000" />
+      <workItem from="1586416620563" duration="11336000" />
+      <workItem from="1586513885214" duration="2337000" />
+      <workItem from="1586532425174" duration="5553000" />
+      <workItem from="1586547757807" duration="175000" />
+      <workItem from="1586708013648" duration="1167000" />
+      <workItem from="1587400532450" duration="971000" />
+      <workItem from="1587443118080" duration="599000" />
+      <workItem from="1587488861381" duration="3633000" />
+      <workItem from="1587582484409" duration="361000" />
+      <workItem from="1587824171139" duration="3993000" />
+      <workItem from="1587852480100" duration="343000" />
+      <workItem from="1590662886964" duration="11026000" />
     </task>
     <task id="LOCAL-00001" summary="start again">
       <created>1581715989451</created>
@@ -213,7 +281,35 @@
       <option name="project" value="LOCAL" />
       <updated>1584969186076</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="adding insert new user feature !">
+      <created>1585179022591</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1585179022591</updated>
+    </task>
+    <task id="LOCAL-00007" summary="updated new login page and profile page !">
+      <created>1585442141803</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1585442141803</updated>
+    </task>
+    <task id="LOCAL-00008" summary="updated register user page !">
+      <created>1585599145550</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1585599145550</updated>
+    </task>
+    <task id="LOCAL-00009" summary="updated add plan feature">
+      <created>1586421768730</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1586421768730</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,7 +371,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="start again" />
     <MESSAGE value="back to start point again !" />
-    <option name="LAST_COMMIT_MESSAGE" value="back to start point again !" />
+    <MESSAGE value="adding insert new user feature !" />
+    <MESSAGE value="updated new login page and profile page !" />
+    <MESSAGE value="updated register user page !" />
+    <MESSAGE value="updated add plan feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated add plan feature" />
   </component>
   <component name="WindowStateProjectService">
     <state x="118" y="276" width="617" height="390" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1580823048598">
@@ -300,7 +400,7 @@
     <state width="1257" height="259" key="GridCell.Tab.0.right/0.0.1280.992@0.0.1280.992" timestamp="1580911189148" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/eticket_system$app.coverage" NAME="app Coverage Results" MODIFIED="1585178226199" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/eticket_system$app.coverage" NAME="app Coverage Results" MODIFIED="1590693585319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/eticket_system$new.coverage" NAME="new Coverage Results" MODIFIED="1584659723353" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

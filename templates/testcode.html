@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  </head>
+   <body>
+     <input type='text' id='word'>
+     <button type='button' id ='retrieve'>Submit</button>
+     <div id='wordResult'></div>
+   </body>
+  <script>
+    $(document).ready(function() {
+       $('#retrieve').click(function(){
+           var word = $('#word').val();
+           $.ajax({
+           url: "/get_word",
+           type: "get",
+           data: {word: word},
+           success: function(response) {
+           $("#wordResult").html(response.html);
+          },
+          error: function(xhr) {
+            alert('this is alert for you');
+         }
+         });
+       });
+    });
+  </script>
+</html>

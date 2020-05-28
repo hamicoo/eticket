@@ -14,8 +14,14 @@ app.secret_key = os.urandom(24)
 logging.basicConfig(format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 myobh = {}
 
-#PAGES
+#SET timezone TO 'Asia/Tehran';
 
+
+
+
+
+
+#PAGES
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html', title='404'), 404
@@ -46,13 +52,16 @@ def user():
 @app.route('/cardPlan')
 def cardPlan():
     avalibale_planes=cards.getValidPlanList(is_student=session['is_student'])
-    cards.getCardHistory(session['user_id'])
+    getHistory=cards.getCardHistory(session['user_id'])
+    cards.checkCardCredit(session['tagid'])
+    if getHistory[0]:
+        all_hist=getHistory[1]
 
     if cards.getCurrentPlan(session['tagid']):
         msg="you don't have any active plan on your card please select a plan to activate your card"
     else:
         msg="you already have an active plan on your card"
-    return render_template('examples/cardPlan.html',server_list=avalibale_planes,message=msg)
+    return render_template('examples/cardPlan.html',server_list=avalibale_planes,message=msg,hist=all_hist)
 
 #USER PROCESS SECTION
 
@@ -109,12 +118,12 @@ def check_email_jquery():
         email=request.args.get('proglang')
 
         if not re.match(r"^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$", email):
-            return jsonify(result='please enter correct email address')
+            return jsonify(result='2')
         else:
             if users.checkemailvalidity(email):
-                return jsonify(result='you can register with this email address')
+                return jsonify(result='1')
             else:
-                return jsonify(result='it seem this email alredy in use please follow th link ')
+                return jsonify(result='0')
 
 
 @app.route("/checklogin", methods=['POST'])
@@ -176,20 +185,31 @@ def check_tagid():
 
 @app.route('/updatecardplan', methods=['GET', 'POST'])
 def updatecardplan():
-
     PlaneId=request.form['option']
     active_days=cards.getPlanActiveDays(PlaneId)
     if active_days[0]:
-        EndDate = datetime.date.today() + datetime.timedelta(days=active_days[1])
-        res=cards.RegisterNewOnlineCard(user_id=session['user_id'],card_id=session['tagid'],plan_id=PlaneId,valid_to=EndDate,status=1)
-        return jsonify(result=res[1])
+            EndDate = datetime.date.today() + datetime.timedelta(days=active_days[1])
+            res=cards.RegisterNewOnlineCard(user_id=session['user_id'],card_id=session['tagid'],plan_id=PlaneId,valid_to=EndDate,status=1)
+            return redirect(url_for('cardPlan'))
     else:
-        return jsonify(result='your Selected Plan is Invalid ! ')
+            return jsonify(result='your Selected Plan is Invalid ! ')
+
+
+
 
 
 
 
 #GATES
+
+@app.route('/testcode')
+def testcode():
+    return render_template('testcode.html')
+
+@app.route('/get_word')
+def get_prediction():
+  word = request.args.get('word')
+  return jsonify({'html': str((word))})
 
 
 #TEST
@@ -203,6 +223,6 @@ def mainpage():
 
 
 if __name__ == '__main__':
+    app.run(debug=True,port=1265)
 
-    app.run(debug=True)
 

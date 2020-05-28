@@ -108,7 +108,7 @@ The above copyright notice and this permission notice shall be included in all c
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">Table List</a>
+            <a class="navbar-brand" href="javascript:;"></a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -264,124 +264,55 @@ The above copyright notice and this permission notice shall be included in all c
                     <table class="table">
                       <thead class=" text-primary">
                         <th>
-                          ID
+                          TagID
                         </th>
                         <th>
-                          Name
+                          Card Plan
                         </th>
                         <th>
-                          Country
+                          Price
                         </th>
                         <th>
-                          City
+                          Register Date
                         </th>
                         <th>
-                          Salary
+                          Valid Untill
+                        </th>
+                          <th>
+                          Status
                         </th>
                       </thead>
                       <tbody>
-                        <tr>
+
+
+             {% for x in hist %}
+            <tr {% if x.status=="Active" %} bgcolor="#ffebfe"  {% endif %} >
                           <td>
-                            1
+                            {{ x.tagid }}
                           </td>
                           <td>
-                            Dakota Rice
+                         {{   x.name }}
                           </td>
                           <td>
-                            Niger
+                           {{ x.price }}
                           </td>
                           <td>
-                            Oud-Turnhout
+                          {{  x.register_date }}
                           </td>
+                          <td >
+                           {{ x.valid_to }}
+                          </td>
+
                           <td class="text-primary">
-                            $36,738
+                           {{ x.status }}
                           </td>
                         </tr>
-                        <tr>
-                          <td>
-                            2
-                          </td>
-                          <td>
-                            Minerva Hooper
-                          </td>
-                          <td>
-                            Curaçao
-                          </td>
-                          <td>
-                            Sinaai-Waas
-                          </td>
-                          <td class="text-primary">
-                            $23,789
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            3
-                          </td>
-                          <td>
-                            Sage Rodriguez
-                          </td>
-                          <td>
-                            Netherlands
-                          </td>
-                          <td>
-                            Baileux
-                          </td>
-                          <td class="text-primary">
-                            $56,142
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            4
-                          </td>
-                          <td>
-                            Philip Chaney
-                          </td>
-                          <td>
-                            Korea, South
-                          </td>
-                          <td>
-                            Overland Park
-                          </td>
-                          <td class="text-primary">
-                            $38,735
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            5
-                          </td>
-                          <td>
-                            Doris Greene
-                          </td>
-                          <td>
-                            Malawi
-                          </td>
-                          <td>
-                            Feldkirchen in Kärnten
-                          </td>
-                          <td class="text-primary">
-                            $63,542
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            6
-                          </td>
-                          <td>
-                            Mason Porter
-                          </td>
-                          <td>
-                            Chile
-                          </td>
-                          <td>
-                            Gloucester
-                          </td>
-                          <td class="text-primary">
-                            $78,615
-                          </td>
-                        </tr>
+
+
+            {% endfor %}
+
+
+
                       </tbody>
                     </table>
                   </div>

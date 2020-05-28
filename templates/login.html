@@ -20,6 +20,19 @@
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./login/css/util.css') }}  ">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./login/css/main.css') }}  ">
 <!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+
+<script>
+	Toastify({
+
+text: "This is a toast",
+
+duration: 3000
+
+}).showToa
+
+</script>
 </head>
 <body>
 	
@@ -34,6 +47,7 @@
 					<span class="login100-form-title">
 						Member Login
 					</span>
+
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input100" type="text" name="email" placeholder="Email" id="email">
@@ -52,7 +66,7 @@
 					</div>
 					
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn"  >
 							Login
 						</button>
 					</div>
@@ -65,6 +79,7 @@
 							Username / Password?
 						</a>
 					</div>
+
 
 					<div class="text-center p-t-136">
 						<a class="txt2" href="\register">
@@ -96,6 +111,7 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="{{ url_for('static', filename='./login/js/main.js') }}  "></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 </body>
 </html>

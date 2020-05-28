@@ -26,6 +26,10 @@
     <!-- Main CSS-->
     <link href="{{ url_for('static', filename='./register/css/main.css') }} " rel="stylesheet" media="all">
 
+    <!-- tostify -->
+    <link href="{{ url_for('static', filename='./css/tostify/toastify.css') }} " rel="stylesheet" media="all">
+
+
 
     <style>
 .alert {
@@ -61,6 +65,9 @@
 </head>
 
 <body>
+
+
+
     <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
 
 
@@ -86,13 +93,13 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">first name</label>
-                                    <input class="input--style-4" type="text" name="name" >
+                                    <input class="input--style-4" type="text" name="name" required="required">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">last name</label>
-                                    <input class="input--style-4" type="text"  name="family">
+                                    <input class="input--style-4" type="text"  name="family" required="required">
                                 </div>
                             </div>
                         </div>
@@ -101,7 +108,7 @@
                                 <div class="input-group">
                                     <label class="label">Birthday</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="birthdate" >
+                                        <input class="input--style-4 js-datepicker" type="text" name="birthdate" required="required">
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
@@ -126,13 +133,13 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">National id</label>
-                                    <input class="input--style-4" type="Number" name="nationalid" >
+                                    <input class="input--style-4" type="Number" name="nationalid" required="required" >
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Phone Number</label>
-                                    <input class="input--style-4" type="tel" name="mobile"  pattern="^09[0-9]{9}">
+                                    <input class="input--style-4" type="tel" name="mobile"  pattern="^09[0-9]{9}" required="required">
                                 </div>
                             </div>
                         </div>
@@ -140,13 +147,13 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Email</label>
-                                    <input class="input--style-4" type="text" name="proglang" id="proglang">
+                                    <input class="input--style-4" type="text" name="proglang" id="proglang" required="required">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Password</label>
-                                    <input class="input--style-4" type="Password" name="password" >
+                                    <input class="input--style-4" type="Password" name="password" required="required">
                                 </div>
                             </div>
                         </div>
@@ -157,7 +164,7 @@
                         <div class="input-group">
                             <label class="label">City</label>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <select  name="city">
+                                <select  name="city" required="required">
                                     <option disabled="disabled" selected="selected">Choose option</option>
                                     <option>Goteburg</option>
                                     <option>Stockholm</option>
@@ -170,7 +177,7 @@
                         <div class="col-1">
                                 <div class="input-group">
                                     <label class="label">Address</label>
-                                    <input class="input--style-4" type="text" name="address" >
+                                    <input class="input--style-4" type="text" name="address" required="required">
                                 </div>
                         </div>
                         <hr>
@@ -179,20 +186,20 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">TagID</label>
-                                    <input class="input--style-4" type="text" name="tagid" >
+                                    <input class="input--style-4" type="number" name="tagid" required="required">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">PinID</label>
-                                    <input class="input--style-4" type="text" id="pinid" name="pinid" >
+                                    <input class="input--style-4" type="number" id="pinid" name="pinid" required="required" >
                                 </div>
                             </div>
                         </div>
 
 
                         <div class="p-t-15">
-                            <button id="mybutt"  class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                            <button id="mybutt"  class="btn btn--radius-2 btn--blue" type="submit"  >Submit</button>
                         </div>
                     </form>
                 </div>
@@ -209,6 +216,22 @@
     <script src="{{ url_for('static', filename='js/my.js') }}" type="text/javascript"> </script>
     <!-- Main JS-->
     <script src="{{ url_for('static', filename='./register/js/global.js') }}  "></script>
+
+
+     <!-- tostfify-->
+
+    <script src="{{ url_for('static', filename='./js/tostify/toastify.js') }}  "></script>
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
 var close = document.getElementsByClassName("closebtn");

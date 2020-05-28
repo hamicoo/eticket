@@ -9,20 +9,60 @@ $(document).ready(function() {
             }, function(data) {
             $("#result").text(data.result);
 
-            if (data.result === 'you can register with this email address') {
-                $("#result").show();
-                $("#result").removeClass('alert info').removeClass('alert warning').removeClass('alert alert').addClass('alert success');
+            if (data.result === '1') {
+                Toastify({
+                text: "it's good ! you can register with this email address",
+                    duration: 5000,
+                    //destination: "https://github.com/apvarun/toastify-js",
+                    newWindow: true,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: 'center', // `left`, `center` or `right`
+                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                stopOnFocus: true
+                    //  ,  Prevents dismissing of toast on hover
+                // onClick: function(){} // Callback after click
+                }).showToast();
             }
 
-            if (data.result === 'it seem this email alredy in use please follow th link ') {
-                $("#result").show();
-                $("#result").removeClass('alert info').removeClass('alert success').addClass('alert alert');
+            if (data.result === '0')
+            {
+                Toastify({
+                    text: "it seem this email alredy in use please,if it belongs to you click link",
+                    duration: 8000,
+                    destination: "/login",
+                    newWindow: true,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: 'center', // `left`, `center` or `right`
+                    backgroundColor: "linear-gradient(to right, #eb5149, #fc190f)",
+                    stopOnFocus: true
+                    //  ,  Prevents dismissing of toast on hover
+                    // onClick: function(){} // Callback after click
+                     }).showToast();
             }
 
-            if (data.result === 'please enter correct email address') {
-                $("#result").show();
-                $("#result").removeClass('alert info').removeClass('alert alert').addClass('alert warning');
-            }
+            if (data.result === '2') {
+
+                    Toastify({
+                    text: "incoorect Email Address",
+                    duration: 8000,
+                    destination: "/login",
+                    newWindow: true,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: 'center', // `left`, `center` or `right`
+                    backgroundColor: "linear-gradient(to right, #fca50f, #ffa100)",
+                    stopOnFocus: true
+                    //  ,  Prevents dismissing of toast on hover
+                    // onClick: function(){} // Callback after click
+                     }).showToast();
+
+
+
+
+
+                            }
 
 
 
@@ -43,15 +83,37 @@ $(document).ready(function() {
             $("#result").text(data.result);
 
             if (data.result === 'False') {
-                $("#result").show();
-                $("#result").text('Your card information is incorrect !')
-                $("#result").removeClass('alert success').addClass('alert warning');
+                Toastify({
+                    text: "Your Card Information is Incorrect",
+                    duration: 6000,
+                    //destination: "/login",
+                    newWindow: true,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: 'center', // `left`, `center` or `right`
+                    backgroundColor: "linear-gradient(to right, #fca50f, #ffa100)",
+                    stopOnFocus: true
+                    //  ,  Prevents dismissing of toast on hover
+                    // onClick: function(){} // Callback after click
+                     }).showToast();
             }
             if (data.result === 'True') {
-                $("#result").show();
-                $("#result").text('Your card information is correct now')
-                $("#result").removeClass('alert info').removeClass('alert warning').removeClass('alert alert').addClass('alert success');
+                Toastify({
+                text: "Your Card Infromation Is Correct !",
+                    duration: 5000,
+                    //destination: "https://github.com/apvarun/toastify-js",
+                    newWindow: true,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: 'center', // `left`, `center` or `right`
+                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                stopOnFocus: true
+                    //  ,  Prevents dismissing of toast on hover
+                // onClick: function(){} // Callback after click
+                }).showToast();
             }
+
+
 
             });
             return false;
