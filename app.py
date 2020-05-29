@@ -32,7 +32,16 @@ def login():
 
 @app.route('/register')
 def register():
+    print('injaaa')
     return render_template('register.html')
+
+@app.route('/confirm')
+def confirm():
+        if 'registeruser' in session:
+            return render_template('confirmation.html', dataa=session['registeruser'])
+        else:
+            return render_template('register.html')
+
 
 
 
@@ -67,20 +76,20 @@ def cardPlan():
 
 @app.route('/processNewRegisterUser', methods=['POST', 'GET'])
 def process():
-    global myobh
+    myobh=[]
 
-    name = request.form['name']
-    family = request.form['family']
-    email=request.form['proglang']
-    nationalid = request.form['nationalid']
-    birthdate = request.form['birthdate']
-    sex = request.form['sex']
-    mobile = request.form['mobile']
-    password = request.form['password']
-    address = request.form['address']
-    city = request.form['city']
-    pinid=request.form['pinid']
-    tagid=request.form['tagid']
+    name =   request.args.get('name')
+    family = request.args.get('family')
+    email=   request.args.get('proglang')
+    nationalid = request.args.get('nationalid')
+    birthdate = request.args.get('birthdate')
+    sex = request.args.get('sex')
+    mobile = request.args.get('mobile')
+    password = request.args.get('password')
+    address = request.args.get('address')
+    city = request.args.get('city')
+    pinid=request.args.get('pinid')
+    tagid=request.args.get('tagid')
     myobh = {
             'result': 'Success!',
             'resultCode': 1,
@@ -97,13 +106,23 @@ def process():
             'tagid': tagid,
             'pinid' : pinid
              }
+
+
+
     if cards.checkcardvalidity(tagid,pinid) is  False:
-        return jsonify({'error': 'Your Pin or Tag Id Is Incorrect'}), 401
+        return jsonify( {'code':'0','message': 'Your Card Information Is incorrect , please correct it before submit data', 'noticetype':'linear-gradient(to right, #eb5149, #fc190f)'})
 
-    if users.checkemailvalidity(emailaddress=email) is False:
-        return jsonify({'error': 'Your Email Addresss is incorrect'}), 401
+    elif users.checkemailvalidity(emailaddress=email) is False:
+        return jsonify({'code':'0','message': 'Your Email Addresss is incorrect' , 'noticetype':'linear-gradient(to right, #eb5149, #fc190f)'})
+    else:
+        session['registeruser'] = myobh
+        return jsonify({'code':'1', 'message': 'everything seem to be good just conform it !','noticetype': 'linear-gradient(to right, #00b09b, #96c93d)'})
+        #return render_template('confirmation.html', dataa=myobh)
 
-    return render_template('confirmation.html',dataa=myobh)
+
+
+
+
 
 
 @app.route("/checkemailvalidity", methods=["GET,POST"])
@@ -156,8 +175,8 @@ def checklogin():
 
 @app.route("/registeruser", methods=['POST'])
 def registeruser():
-    global myobh
-    if users.registerNewUser(userinfo=myobh):
+
+    if users.registerNewUser(userinfo=session['registeruser']):
         return render_template('login.html')
     else:
         return render_template('404.html', title='404'), 404

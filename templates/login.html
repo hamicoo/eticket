@@ -21,18 +21,11 @@
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./login/css/main.css') }}  ">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!-- tostify -->
+    <link href="{{ url_for('static', filename='./css/tostify/toastify.css') }} " rel="stylesheet" media="all">
 
 
-<script>
-	Toastify({
 
-text: "This is a toast",
-
-duration: 3000
-
-}).showToa
-
-</script>
 </head>
 <body>
 	
@@ -112,6 +105,13 @@ duration: 3000
 <!--===============================================================================================-->
 	<script src="{{ url_for('static', filename='./login/js/main.js') }}  "></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+
+
+     <!-- tostfify-->
+    <script src="{{ url_for('static', filename='js/my.js') }}" type="text/javascript"> </script>
+    <script src="{{ url_for('static', filename='./js/tostify/toastify.js') }}  "></script>
+
 
 </body>
 </html>

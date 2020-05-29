@@ -79,8 +79,7 @@
             <div class="card card-4">
                 <div class="card-body">
 
-    <div class="alert info" id="result">
-                    </div>
+
 
                     <h2 class="title">E-Mon System Registration</h2>
 
@@ -88,18 +87,18 @@
 
 
 
-                    <form method="POST" action="/processNewRegisterUser"  >
+
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">first name</label>
-                                    <input class="input--style-4" type="text" name="name" required="required">
+                                    <input class="input--style-4" type="text" name="name" required="required" id="name">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">last name</label>
-                                    <input class="input--style-4" type="text"  name="family" required="required">
+                                    <input class="input--style-4" type="text"  name="family" required="required" id="family">
                                 </div>
                             </div>
                         </div>
@@ -108,7 +107,7 @@
                                 <div class="input-group">
                                     <label class="label">Birthday</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="birthdate" required="required">
+                                        <input class="input--style-4 js-datepicker" type="text" name="birthdate" required="required" id="birthdate">
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
@@ -133,13 +132,13 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">National id</label>
-                                    <input class="input--style-4" type="Number" name="nationalid" required="required" >
+                                    <input class="input--style-4" type="Number" id="nationalid" name="nationalid" required="required" >
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Phone Number</label>
-                                    <input class="input--style-4" type="tel" name="mobile"  pattern="^09[0-9]{9}" required="required">
+                                    <input class="input--style-4" type="tel" name="mobile"  id="mobile" pattern="^09[0-9]{9}" required="required">
                                 </div>
                             </div>
                         </div>
@@ -153,7 +152,7 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Password</label>
-                                    <input class="input--style-4" type="Password" name="password" required="required">
+                                    <input class="input--style-4" type="Password" id="password" name="password" required="required">
                                 </div>
                             </div>
                         </div>
@@ -164,7 +163,7 @@
                         <div class="input-group">
                             <label class="label">City</label>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <select  name="city" required="required">
+                                <select id="city"  name="city" required="required">
                                     <option disabled="disabled" selected="selected">Choose option</option>
                                     <option>Goteburg</option>
                                     <option>Stockholm</option>
@@ -177,7 +176,7 @@
                         <div class="col-1">
                                 <div class="input-group">
                                     <label class="label">Address</label>
-                                    <input class="input--style-4" type="text" name="address" required="required">
+                                    <input id="address" class="input--style-4" type="text" name="address" required="required">
                                 </div>
                         </div>
                         <hr>
@@ -186,7 +185,7 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">TagID</label>
-                                    <input class="input--style-4" type="number" name="tagid" required="required">
+                                    <input class="input--style-4" type="number" id="tagid" name="tagid" required="required">
                                 </div>
                             </div>
                             <div class="col-2">
@@ -201,7 +200,7 @@
                         <div class="p-t-15">
                             <button id="mybutt"  class="btn btn--radius-2 btn--blue" type="submit"  >Submit</button>
                         </div>
-                    </form>
+
                 </div>
             </div>
         </div>
